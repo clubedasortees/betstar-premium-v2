@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BetStar Premium V2</title>
+
+<style>
+
+body{
+background:#000;
+color:white;
+font-family:Arial,sans-serif;
+margin:0;
+padding:20px;
+text-align:center;
+}
+
+.logo{
+width:250px;
+margin-top:20px;
+}
+
+h1{
+color:gold;
+}
+
+.card{
+background:#063d06;
+border:2px solid gold;
+border-radius:20px;
+padding:20px;
+margin:20px auto;
+max-width:500px;
+}
+
+input{
+width:90%;
+padding:15px;
+margin:10px;
+border:none;
+border-radius:10px;
+font-size:18px;
+}
+
+button{
+background:gold;
+color:black;
+border:none;
+padding:15px 25px;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+margin:5px;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<img src="logo.jpg" class="logo">
+
+<h1>⭐ BetStar Premium V2</h1>
+
+<div class="card">
+
+<h2>Login</h2>
+
+<input type="text" placeholder="Usuário">
+
+<input type="password" placeholder="Senha">
+
+<br>
+
+<button>Entrar</button>
+
+<button>Cadastrar</button>
+
+</div>
+
+<div class="card">
+
+<h2>💰 Investimentos Virtuais</h2>
+
+<p>Saldo: <span id="saldo">10000</span> BetCoins</p>
+
+<p>Investido: <span id="investido">0</span> BetCoins</p>
+
+<button onclick="investir()">Investir +100</button>
+
+<button onclick="rendimento()">📈 Receber Rendimentos</button>
+
+</div>
+
+<div class="card">
+
+<h2>📊 Estatísticas</h2>
+
+<p>Total Investido: <span id="investido2">0</span></p>
+
+<p>Lucro Acumulado: <span id="lucroTotal">0</span></p>
+
+</div>
+
+<div class="card">
+
+<h2>💼 Painel Financeiro</h2>
+
+<p>Patrimônio Total:
+<span id="patrimonio">10000</span> BetCoins</p>
+
+<p>ROI:
+<span id="roi">0</span>%</p>
+
+<p>Crescimento da Conta:
+<span id="crescimento">0</span>%</p>
+
+</div>
+
+<div class="card">
+
+<h2>📋 Painel do Investidor</h2>
+
+<p>Operações Realizadas:
+<span id="operacoes">0</span></p>
+
+<p>Taxa de Sucesso:
+<span id="sucesso">100</span>%</p>
+
+<p>Último Lucro:
+<span id="ultimoLucro">0</span> BetCoins</p>
+
+<p>Status da Conta:
+<span style="color:lime;">ATIVA</span></p>
+
+</div>
+
+<div class="card">
+
+<h2>📈 Mercado Virtual</h2>
+
+<p>Rentabilidade Atual:
+<span id="rentabilidade">5</span>%</p>
+
+<p>Investidores Online:
+<span id="online">127</span></p>
+
+<p>Volume Movimentado:
+<span id="volume">1250000</span> BetCoins</p>
+
+</div>
+
+<div class="card">
+
+<h2>🏆 Bolão Copa 2026</h2>
+
+<p>Brasil x Argentina</p>
+
+<button>Dar Palpite</button>
+
+</div>
+
+<div class="card">
+
+<h2>👑 Ranking VIP</h2>
+
+<p>Nível: <span id="vip">Bronze 🥉</span></p>
+
+<p>Progresso VIP</p>
+
+<progress
+id="barraVip"
+value="0"
+max="10000"
+style="width:90%;height:25px;">
+</progress>
+
+<p>Progresso: <span id="percentualVip">0</span>%</p>
+
+<p>Meta Diamante: 10.000 BetCoins</p>
+
+<p>Posição #15</p>
+
+</div>
+
+<script>
+
+function investir(){
+
+let saldo =
+parseInt(document.getElementById("saldo").innerHTML);
+
+let investido =
+parseInt(document.getElementById("investido").innerHTML);
+
+saldo = saldo - 100;
+
+investido = investido + 100;
+
+document.getElementById("saldo").innerHTML = saldo;
+
+document.getElementById("investido").innerHTML = investido;
+document.getElementById("investido2").innerHTML = investido;
+
+let operacoes =
+parseInt(document.getElementById("operacoes").innerHTML);
+
+operacoes = operacoes + 1;
+
+document.getElementById("operacoes").innerHTML =
+operacoes;
+
+let percentual =
+Math.floor((investido / 10000) * 100);
+
+document.getElementById("percentualVip").innerHTML =
+percentual;
+
+// Atualiza Painel Financeiro
+let patrimonio = saldo + investido;
+
+document.getElementById("patrimonio").innerHTML =
+patrimonio;
+
+let lucroTotal =
+parseInt(document.getElementById("lucroTotal").innerHTML);
+
+let roi = 0;
+
+if(investido > 0){
+roi = Math.floor((lucroTotal / investido) * 100);
+}
+
+document.getElementById("roi").innerHTML =
+roi;
+
+let crescimento =
+Math.floor(((patrimonio - 10000) / 10000) * 100);
+
+document.getElementById("crescimento").innerHTML =
+crescimento;
+
+atualizarVIP();
+
+salvarDados();
+
+}
+
+function rendimento(){
+
+let saldo =
+parseInt(document.getElementById("saldo").innerHTML);
+
+let investido =
+parseInt(document.getElementById("investido").innerHTML);
+
+let lucro =
+Math.floor(investido * 0.05);
+
+let lucroTotal =
+parseInt(document.getElementById("lucroTotal").innerHTML);
+
+lucroTotal = lucroTotal + lucro;
+
+document.getElementById("lucroTotal").innerHTML = lucroTotal;
+
+document.getElementById("ultimoLucro").innerHTML = lucro;
+
+saldo = saldo + lucro;
+
+let patrimonio = saldo + investido;
+
+document.getElementById("patrimonio").innerHTML =
+patrimonio;
+
+let roi = 0;
+
+if(investido > 0){
+roi = Math.floor((lucroTotal / investido) * 100);
+}
+
+document.getElementById("roi").innerHTML =
+roi;
+
+let crescimento =
+Math.floor(((patrimonio - 10000) / 10000) * 100);
+
+document.getElementById("crescimento").innerHTML =
+crescimento;
+
+document.getElementById("saldo").innerHTML = saldo;
+
+document.getElementById("investido").innerHTML = investido;
+
+atualizarVIP();
+
+salvarDados();
+
+}
+
+function salvarDados(){
+
+localStorage.setItem(
+"saldo",
+document.getElementById("saldo").innerHTML
+);
+
+localStorage.setItem(
+"investido",
+document.getElementById("investido").innerHTML
+);
+
+localStorage.setItem(
+"lucroTotal",
+document.getElementById("lucroTotal").innerHTML
+);
+
+localStorage.setItem(
+"ultimoLucro",
+document.getElementById("ultimoLucro").innerHTML
+);
+
+localStorage.setItem(
+"operacoes",
+document.getElementById("operacoes").innerHTML
+);
+
+localStorage.setItem(
+"patrimonio",
+document.getElementById("patrimonio").innerHTML
+);
+
+localStorage.setItem(
+"roi",
+document.getElementById("roi").innerHTML
+);
+
+localStorage.setItem(
+"crescimento",
+document.getElementById("crescimento").innerHTML
+);
+
+}
+function atualizarVIP(){
+
+let investido =
+parseInt(document.getElementById("investido").innerHTML);
+
+let vip = "Bronze 🥉";
+
+if(investido >= 1000){
+vip = "Prata 🥈";
+}
+
+if(investido >= 5000){
+vip = "Ouro 🥇";
+}
+
+if(investido >= 10000){
+vip = "Diamante 💎";
+}
+
+document.getElementById("barraVip").value = investido;
+
+let percentual =
+Math.floor((investido / 10000) * 100);
+
+document.getElementById("percentualVip").innerHTML =
+percentual;
+
+document.getElementById("vip").innerHTML = vip;
+
+}
+
+function atualizarMercado(){
+
+let online =
+Math.floor(Math.random() * 50) + 100;
+
+let volume =
+Math.floor(Math.random() * 500000) + 1000000;
+
+let rentabilidade =
+Math.floor(Math.random() * 5) + 3;
+
+document.getElementById("online").innerHTML = online;
+
+document.getElementById("volume").innerHTML = volume;
+
+document.getElementById("rentabilidade").innerHTML = rentabilidade;
+
+}
+window.onload = function(){
+
+if(localStorage.getItem("saldo")){
+
+document.getElementById("saldo").innerHTML =
+localStorage.getItem("saldo");
+
+}
+
+if(localStorage.getItem("investido")){
+
+document.getElementById("investido").innerHTML =
+localStorage.getItem("investido");
+
+}
+
+document.getElementById("investido2").innerHTML =
+document.getElementById("investido").innerHTML;
+
+if(localStorage.getItem("lucroTotal")){
+
+document.getElementById("lucroTotal").innerHTML =
+localStorage.getItem("lucroTotal");
+
+}
+
+if(localStorage.getItem("ultimoLucro")){
+
+document.getElementById("ultimoLucro").innerHTML =
+localStorage.getItem("ultimoLucro");
+
+}
+
+if(localStorage.getItem("operacoes")){
+
+document.getElementById("operacoes").innerHTML =
+localStorage.getItem("operacoes");
+
+}
+
+if(localStorage.getItem("patrimonio")){
+
+document.getElementById("patrimonio").innerHTML =
+localStorage.getItem("patrimonio");
+
+}
+
+if(localStorage.getItem("roi")){
+
+document.getElementById("roi").innerHTML =
+localStorage.getItem("roi");
+
+}
+
+if(localStorage.getItem("crescimento")){
+
+document.getElementById("crescimento").innerHTML =
+localStorage.getItem("crescimento");
+
+}
+
+let saldo =
+parseInt(document.getElementById("saldo").innerHTML);
+
+if(saldo < 100){
+alert("Saldo insuficiente!");
+return;
+}
+
+let investido =
+parseInt(document.getElementById("investido").innerHTML);
+
+let lucroTotal =
+parseInt(document.getElementById("lucroTotal").innerHTML);
+
+
+let patrimonio = saldo + investido;
+
+document.getElementById("patrimonio").innerHTML =
+patrimonio;
+
+let roi = 0;
+
+if(investido > 0){
+roi = Math.floor((lucroTotal / investido) * 100);
+}
+
+document.getElementById("roi").innerHTML =
+roi;
+
+let crescimento =
+Math.floor(((patrimonio - 10000) / 10000) * 100);
+
+document.getElementById("crescimento").innerHTML =
+crescimento;
+
+atualizarVIP();
+
+atualizarMercado();
+
+setInterval(atualizarMercado,3000);
+}
+</script>
+
+</body>
+</html>
