@@ -57,7 +57,7 @@ margin:5px;
 }
 
 button:hover{
-opacidade : 0,9 ;
+opacity: 0.9;
 }
 
 </style>
@@ -526,6 +526,21 @@ window.db = db;
 window.doc = doc;
 window.getDoc = getDoc;
 window.setDoc = setDoc;
+async function testeFirebase(){
+
+await setDoc(
+doc(db,"teste","conexao"),
+{
+status:"online",
+data:new Date().toLocaleString()
+}
+);
+
+console.log("Teste salvo no Firestore!");
+
+}
+
+testeFirebase();
   
 console.log("Firebase conectado!");
 
