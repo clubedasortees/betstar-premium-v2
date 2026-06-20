@@ -346,7 +346,7 @@ localStorage.setItem(
 "crescimento",
 document.getElementById("crescimento").innerHTML
 );
-
+salvarFirebase();
 }
 function atualizarVIP(){
 
@@ -526,6 +526,22 @@ window.db = db;
 window.doc = doc;
 window.getDoc = getDoc;
 window.setDoc = setDoc;
+window.salvarFirebase = async function() {
+
+  await setDoc(
+    doc(db, "usuários", "Automático"),
+    {
+      saldo: parseInt(document.getElementById("saldo").innerHTML),
+      investido: parseInt(document.getElementById("investido").innerHTML),
+      lucrototal: parseInt(document.getElementById("lucroTotal").innerHTML),
+      vip: document.getElementById("vip").innerHTML,
+      email: "teste@betstar.com"
+    }
+  );
+
+  console.log("Dados salvos no Firebase!");
+
+}  
 async function testeFirebase(){
 
 await setDoc(
