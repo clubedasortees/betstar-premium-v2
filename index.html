@@ -73,15 +73,13 @@ opacity: 0.9;
 
 <h2>Login</h2>
 
-<input type="text" placeholder="Usuário">
+<input type="email" id="email" placeholder="E-mail">
 
-<input type="password" placeholder="Senha">
+<input type="password" id="senha" placeholder="Senha">
 
-<br>
+<button onclick="entrar()">Entrar</button>
 
-<button>Entrar</button>
-
-<button>Cadastrar</button>
+<button onclick="cadastrar()">Cadastrar</button>
 
 </div>
 
@@ -504,6 +502,12 @@ setInterval(atualizarMercado,3000);
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+ import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  
 import {
 getFirestore,
 doc,
@@ -522,6 +526,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 const db = getFirestore(app);
 window.db = db;
 window.doc = doc;
@@ -561,7 +566,43 @@ console.log("Teste salvo no Firestore!");
 testeFirebase();
   
 console.log("Firebase conectado!")
-  
+window.cadastrar = async function(){
+
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+
+  try{
+
+    await createUserWithEmailAndPassword(auth, email, senha);
+
+    alert("Usuário cadastrado com sucesso!");
+
+  }catch(erro){
+
+    alert(erro.message);
+
+  }
+
+}
+
+window.entrar = async function(){
+
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+
+  try{
+
+    await signInWithEmailAndPassword(auth, email, senha);
+
+    alert("Login realizado com sucesso!");
+
+  }catch(erro){
+
+    alert("E-mail ou senha incorretos");
+
+  }
+
+} 
 </script>
 </body>
 </html>
