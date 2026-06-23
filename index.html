@@ -593,18 +593,16 @@ window.cadastrar = async function(){
 
   try{
 
-    await signInWithEmailAndPassword(auth, email, senha);
+    await createUserWithEmailAndPassword(auth, email, senha);
 
-await carregarFirebase();
+    alert("Conta criada com sucesso!");
 
-alert("Login realizado com sucesso!");
-
-}catch(erro){
+  }catch(erro){
 
     console.log(erro);
     alert("ERRO: " + erro.code + " | " + erro.message);
 
-}
+  }
 
 }
 
