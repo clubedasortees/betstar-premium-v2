@@ -599,11 +599,12 @@ await carregarFirebase();
 
 alert("Login realizado com sucesso!");
 
-  }catch(erro){
+}catch(erro){
 
-    alert(erro.message);
+    console.log(erro);
+    alert("ERRO: " + erro.code + " | " + erro.message);
 
-  }
+}
 
 }
 
@@ -620,9 +621,10 @@ window.entrar = async function(){
 
   }catch(erro){
 
-    alert("E-mail ou senha incorretos");
+    console.log(erro);
+    alert("ERRO: " + erro.code + " | " + erro.message);
 
-  }
+}
 
 } 
 </script>
