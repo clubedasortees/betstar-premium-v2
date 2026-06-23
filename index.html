@@ -548,7 +548,11 @@ onAuthStateChanged(auth, (user) => {
 
 }); 
 window.salvarFirebase = async function() {
-  alert("salvarFirebase executou");
+
+  if(!usuarioAtual){
+    console.log("Usuário não logado");
+    return;
+  }
 
   await setDoc(
     doc(db, "usuarios", usuarioAtual.uid),
@@ -563,7 +567,8 @@ window.salvarFirebase = async function() {
 
   console.log("Dados salvos no Firebase!");
 
-}  
+}
+  
 async function testeFirebase(){
 
 await setDoc(
