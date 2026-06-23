@@ -502,12 +502,13 @@ setInterval(atualizarMercado,3000);
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
- import {
+import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-  
+ 
 import {
 getFirestore,
 doc,
@@ -527,22 +528,36 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+ 
+let usuarioAtual = null;
+ 
 const db = getFirestore(app);
 window.db = db;
 window.doc = doc;
 window.getDoc = getDoc;
 window.setDoc = setDoc;
+onAuthStateChanged(auth, (user) => {
+
+  if(user){
+
+    usuarioAtual = user;
+
+    console.log("Usuário logado:", user.email);
+
+  }
+
+}); 
 window.salvarFirebase = async function() {
   alert("salvarFirebase executou");
 
   await setDoc(
-    doc(db, "usuários", "Automático"),
+    doc(db, "usuarios", usuarioAtual.uid),
     {
       saldo: parseInt(document.getElementById("saldo").innerHTML),
       investido: parseInt(document.getElementById("investido").innerHTML),
       lucrototal: parseInt(document.getElementById("lucroTotal").innerHTML),
       vip: document.getElementById("vip").innerHTML,
-      email: "teste@betstar.com"
+      email: usuarioAtual.email
     }
   );
 
