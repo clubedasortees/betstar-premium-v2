@@ -613,9 +613,11 @@ window.entrar = async function(){
 
   try{
 
-    await signInWithEmailAndPassword(auth, email, senha);
+await signInWithEmailAndPassword(auth, email, senha);
 
-    alert("Login realizado com sucesso!");
+alert("Login realizado com sucesso!");
+
+salvarFirebase();
 
   }catch(erro){
 
