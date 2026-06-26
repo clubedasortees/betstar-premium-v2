@@ -150,3 +150,74 @@ localStorage.setItem(
 "roi",
 document.getElementById("roi").innerHTML
 );
+
+localStorage.setItem(
+"crescimento",
+document.getElementById("crescimento").innerHTML
+);
+salvarFirebase();
+}
+function atualizarVIP(){
+
+let investido =
+parseInt(document.getElementById("investido").innerHTML);
+
+let vip = "Bronze 🥉";
+
+if(investido >= 1000){
+vip = "Prata 🥈";
+}
+
+if(investido >= 5000){
+vip = "Ouro 🥇";
+}
+
+if(investido >= 10000){
+vip = "Diamante 💎";
+}
+
+document.getElementById("barraVip").value = investido;
+
+let percentual =
+Math.floor((investido / 10000) * 100);
+
+document.getElementById("percentualVip").innerHTML =
+percentual;
+
+document.getElementById("vip").innerHTML = vip;
+
+}
+
+function atualizarMercado(){
+
+let online =
+Math.floor(Math.random() * 50) + 100;
+
+let volume =
+Math.floor(Math.random() * 500000) + 1000000;
+
+let rentabilidade =
+Math.floor(Math.random() * 5) + 3;
+
+document.getElementById("online").innerHTML = online;
+
+document.getElementById("volume").innerHTML = volume;
+
+document.getElementById("rentabilidade").innerHTML = rentabilidade;
+
+}
+window.onload = function(){
+
+if(localStorage.getItem("saldo")){
+
+document.getElementById("saldo").innerHTML =
+localStorage.getItem("saldo");
+
+}
+
+if(localStorage.getItem("investido")){
+
+document.getElementById("investido").innerHTML =
+localStorage.getItem("investido");
+
+}
