@@ -614,6 +614,22 @@ window.entrar = async function(){
   try{
 
 await signInWithEmailAndPassword(auth, email, senha);
+    const usuarioAtual = auth.currentUser;
+
+const docRef = doc(db, "usuarios", usuarioAtual.uid);
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+
+  const dados = docSnap.data();
+
+  saldo = dados.saldo;
+  investido = dados.investido;
+  lucroTotal = dados.lucrototal;
+  vip = dados.vip;
+
+  atualizarTela();
+}
 
 alert("Login realizado com sucesso!");
 
