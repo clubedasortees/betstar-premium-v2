@@ -1,4 +1,4 @@
-<script>
+
 
 function investir(){
 
@@ -308,5 +308,4 @@ atualizarMercado();
 
 setInterval(atualizarMercado,3000);
 }
-</script>
   
