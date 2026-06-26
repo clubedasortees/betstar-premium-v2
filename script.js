@@ -221,3 +221,92 @@ document.getElementById("investido").innerHTML =
 localStorage.getItem("investido");
 
 }
+
+  document.getElementById("investido2").innerHTML =
+document.getElementById("investido").innerHTML;
+
+if(localStorage.getItem("lucroTotal")){
+
+document.getElementById("lucroTotal").innerHTML =
+localStorage.getItem("lucroTotal");
+
+}
+
+if(localStorage.getItem("ultimoLucro")){
+
+document.getElementById("ultimoLucro").innerHTML =
+localStorage.getItem("ultimoLucro");
+
+}
+
+if(localStorage.getItem("operacoes")){
+
+document.getElementById("operacoes").innerHTML =
+localStorage.getItem("operacoes");
+
+}
+
+if(localStorage.getItem("patrimonio")){
+
+document.getElementById("patrimonio").innerHTML =
+localStorage.getItem("patrimonio");
+
+}
+
+if(localStorage.getItem("roi")){
+
+document.getElementById("roi").innerHTML =
+localStorage.getItem("roi");
+
+}
+
+if(localStorage.getItem("crescimento")){
+
+document.getElementById("crescimento").innerHTML =
+localStorage.getItem("crescimento");
+
+}
+
+let saldo =
+parseInt(document.getElementById("saldo").innerHTML);
+
+if(saldo < 100){
+alert("Saldo insuficiente!");
+return;
+}
+
+let investido =
+parseInt(document.getElementById("investido").innerHTML);
+
+let lucroTotal =
+parseInt(document.getElementById("lucroTotal").innerHTML);
+
+
+let patrimonio = saldo + investido;
+
+document.getElementById("patrimonio").innerHTML =
+patrimonio;
+
+let roi = 0;
+
+if(investido > 0){
+roi = Math.floor((lucroTotal / investido) * 100);
+}
+
+document.getElementById("roi").innerHTML =
+roi;
+
+let crescimento =
+Math.floor(((patrimonio - 10000) / 10000) * 100);
+
+document.getElementById("crescimento").innerHTML =
+crescimento;
+
+atualizarVIP();
+
+atualizarMercado();
+
+setInterval(atualizarMercado,3000);
+}
+</script>
+  
