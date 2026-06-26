@@ -623,14 +623,14 @@ if (docSnap.exists()) {
 
   const dados = docSnap.data();
 
-  saldo = dados.saldo;
-  investido = dados.investido;
-  lucroTotal = dados.lucrototal;
-  vip = dados.vip;
+  document.getElementById("saldo").innerHTML = dados.saldo;
+  document.getElementById("investido").innerHTML = dados.investido;
+  document.getElementById("investido2").innerHTML = dados.investido;
+  document.getElementById("lucroTotal").innerHTML = dados.lucrototal;
+  document.getElementById("vip").innerHTML = dados.vip;
 
-  atualizarTela();
+  atualizarVIP();
 }
-
 alert("Login realizado com sucesso!");
 
 salvarFirebase();
