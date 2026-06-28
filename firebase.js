@@ -52,16 +52,21 @@ window.salvarFirebase = async function() {
     return;
   }
 
-  await setDoc(
-    doc(db, "usuarios", usuarioAtual.uid),
-    {
-      saldo: parseInt(document.getElementById("saldo").innerHTML),
-      investido: parseInt(document.getElementById("investido").innerHTML),
-      lucrototal: parseInt(document.getElementById("lucroTotal").innerHTML),
-      vip: document.getElementById("vip").innerHTML,
-      email: usuarioAtual.email
-    }
-  );
+ await setDoc(
+  doc(db, "usuarios", usuarioAtual.uid),
+  {
+    saldo: parseInt(document.getElementById("saldo").innerHTML),
+    investido: parseInt(document.getElementById("investido").innerHTML),
+    lucrototal: parseInt(document.getElementById("lucroTotal").innerHTML),
+    ultimolucro: parseInt(document.getElementById("ultimoLucro").innerHTML),
+    operacoes: parseInt(document.getElementById("operacoes").innerHTML),
+    patrimonio: parseInt(document.getElementById("patrimonio").innerHTML),
+    roi: parseInt(document.getElementById("roi").innerHTML),
+    crescimento: parseInt(document.getElementById("crescimento").innerHTML),
+    vip: document.getElementById("vip").innerHTML,
+    email: usuarioAtual.email
+  }
+);
 
   console.log("Dados salvos no Firebase!");
 
