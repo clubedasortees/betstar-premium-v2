@@ -11,8 +11,23 @@ window.onload = async function () {
 
   console.log("Usuários cadastrados:");
 
-  usuarios.forEach((doc) => {
-    console.log(doc.id, doc.data());
-  });
+  let html = "";
+
+usuarios.forEach((doc) => {
+
+    const dados = doc.data();
+
+    html += `
+    <div style="background:#222;padding:15px;margin:10px;border-radius:10px;">
+        <h3>${dados.email}</h3>
+        <p>Saldo: ${dados.saldo}</p>
+        <p>Investido: ${dados.investido}</p>
+        <p>VIP: ${dados.vip}</p>
+    </div>
+    `;
+
+});
+
+document.getElementById("listaUsuarios").innerHTML = html;
 
 };
