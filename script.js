@@ -57,7 +57,9 @@ crescimento;
 atualizarVIP();
 
 salvarDados();
-salvarFirebase();  
+if (typeof salvarFirebase === "function") {
+    salvarFirebase();
+}  
 
 }
 
@@ -154,7 +156,10 @@ localStorage.setItem(
 "crescimento",
 document.getElementById("crescimento").innerHTML
 );
-salvarFirebase();
+  
+if (typeof salvarFirebase === "function") {
+    salvarFirebase();
+}
 }
 function atualizarVIP(){
 
