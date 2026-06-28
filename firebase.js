@@ -89,6 +89,10 @@ console.log("Teste salvo no Firestore!");
 // testeFirebase();
   
 console.log("Firebase conectado!")
+
+window.auth = auth;
+window.db = db;
+window.usuarioAtual = () => usuarioAtual;
 window.cadastrar = async function(){
 
   const email = document.getElementById("email").value;
